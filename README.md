@@ -74,6 +74,10 @@ mcp-agent-poc/
 └── send_email.py
 ```
 
+## Project Flow Chart
+
+![Project Flow Diagram](ProjectFlowChart.png)
+
 ## Usage
 
 ### Starting the MCP Agent
