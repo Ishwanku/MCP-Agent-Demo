@@ -1,0 +1,21 @@
+SUBJECT: Test Email from MCP Agent
+TO: ishwanku.saini@eversana.com
+CC: 
+BCC: vemula.saikumar@Eversana.com 
+ATTACHMENTS: 
+
+BODY:
+Hello,
+
+This is a test email sent by the MCP Agent using a text file.
+The agent has successfully read the email details from this file and is sending the email.
+
+Features of this email tool:
+1. Reads email details from a text file
+2. Supports multiple recipients
+3. Supports CC and BCC
+4. Can attach multiple files
+5. Supports multi-line email body
+
+Best regards,
+MCP Agent 

@@ -1,37 +1,74 @@
 """
-Configuration management for the Demo MCP Agent.
+Configuration settings for the MCP Agent.
 
-This module centralizes configuration using Pydantic settings.
-It handles environment variables and provides type-safe, validated settings.
+This module provides configuration management for the MCP agent system using Pydantic.
+It handles loading settings from environment variables and .env files.
+
+Key Features:
+- Environment variable loading
+- .env file support
+- Type validation
+- Default values
+- Case-sensitive settings
+
+Example:
+    ```python
+    from mcp.core.config import settings
+    
+    # Access settings
+    port = settings.DEMO_AGENT_PORT
+    api_key = settings.DEMO_AGENT_API_KEY
+    outlook_path = settings.OUTLOOK_PATH
+    ```
+
+Dependencies:
+    - pydantic_settings: For settings management
+    - python-dotenv: For .env file support
 """
 
-from pydantic import Field
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
+from typing import Optional
 
 class Settings(BaseSettings):
-    """Main settings class for the Demo MCP Agent."""
+    """Settings for the MCP Agent.
     
-    model_config = SettingsConfigDict(env_prefix="")
-
+    This class defines all configuration settings for the MCP agent system.
+    It uses Pydantic for validation and type checking.
+    
+    Attributes:
+        DEMO_AGENT_PORT: Port to run the demo agent on
+        DEMO_AGENT_API_KEY: API key for authentication
+        OUTLOOK_PATH: Path to the Outlook executable
+        LOG_LEVEL: Logging level for the application
+        
+    Configuration:
+        The settings can be configured through:
+        - Environment variables
+        - .env file
+        - Default values (if not specified)
+    """
+    
     # Demo Agent settings
-    DEMO_AGENT_PORT: int = Field(default=8000)
-    DEMO_AGENT_API_KEY: str = Field(default="demo-secret-key")
-
+    DEMO_AGENT_PORT: int = 8000
+    DEMO_AGENT_API_KEY: Optional[str] = None
+    
+    # Outlook settings
+    OUTLOOK_PATH: Optional[str] = None
+    
     # Logging settings
-    LOG_LEVEL: str = Field(default="INFO")
-    LOG_FORMAT: str = Field(
-        default="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    )
+    LOG_LEVEL: str = "INFO"
+    
+    class Config:
+        """Pydantic configuration.
+        
+        This class configures how Pydantic loads and validates settings.
+        
+        Attributes:
+            env_file: Path to the .env file
+            case_sensitive: Whether to be case-sensitive with environment variables
+        """
+        env_file = ".env"
+        case_sensitive = True
 
-# Create global settings instance
-settings = Settings()
-
-# Export settings for use in other modules
-DEMO_AGENT_PORT = settings.DEMO_AGENT_PORT
-DEMO_AGENT_API_KEY = settings.DEMO_AGENT_API_KEY
-
-__all__ = [
-    "settings",
-    "DEMO_AGENT_PORT",
-    "DEMO_AGENT_API_KEY"
-]
+# Create a global settings instance
+settings = Settings() 

@@ -9,8 +9,10 @@ from typing import Dict, Any, List, Optional
 from datetime import datetime
 import json
 import re
-from ..core.server import FastMCP
-from ..core.config import settings
+from mcp.core.server import FastMCP
+from mcp.core.config import settings
+from mcp.tools.email_tool import EmailTool
+from mcp.tools.email_file_tool import EmailFileTool
 
 class DemoAgent:
     """A demo MCP agent that showcases basic functionality."""
@@ -23,6 +25,10 @@ class DemoAgent:
             api_key=settings.DEMO_AGENT_API_KEY
         )
         
+        # Initialize email tools
+        self.email_tool = EmailTool()
+        self.email_file_tool = EmailFileTool()
+        
         # Register demo tools
         self.server.register_tool('echo', self.echo)
         self.server.register_tool('calculate', self.calculate)
@@ -31,6 +37,8 @@ class DemoAgent:
         self.server.register_tool('extract_info', self.extract_info)
         self.server.register_tool('validate_data', self.validate_data)
         self.server.register_tool('transform_data', self.transform_data)
+        self.server.register_tool('send_email', self.email_tool.send_email)
+        self.server.register_tool('send_email_from_file', self.email_file_tool.send_email_from_file)
     
     def echo(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """Echo back the input data with timestamp.

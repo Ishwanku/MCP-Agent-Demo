@@ -1,229 +1,168 @@
 # MCP Agent Demo
 
-A powerful demonstration of a Multi-Component Protocol (MCP) agent system that showcases various data processing and analysis capabilities.
+A demonstration of a Multi-Component Protocol (MCP) agent system that provides email automation capabilities using Microsoft Outlook.
 
-## Features
+## Overview
 
-- FastAPI-based server implementation
-- Multiple built-in tools for data processing
-- JSON formatting and validation
-- Text analysis and information extraction
-- Data validation and transformation
-- Error handling and status reporting
-- API key authentication
+This project implements an MCP (Multi-Component Protocol) agent system that can:
 
-## Project Structure
+- Automatically start and manage Microsoft Outlook
+- Send emails with attachments
+- Handle CC and BCC recipients
+- Provide detailed logging and error handling
 
-```plaintext
-mcp-agent-demo/
-├── mcp/
-│   ├── core/
-│   │   ├── config.py        # Configuration management
-│   │   └── server.py        # Base server implementation
-│   └── agents/
-│       ├── __init__.py
-│       └── demo_agent.py    # Enhanced demo agent implementation
-├── .env                     # Environment variables
-├── pyproject.toml          # Project dependencies
-├── setup.py               # Package installation
-├── run.py                # One-command setup and run script
-└── README.md             # This file
-```
+## Prerequisites
 
-## Quick Start
+- Python 3.9 or higher
+- Microsoft Outlook installed
+- Windows operating system (for Outlook integration)
 
-### Option 1: One-Command Setup and Run
+## Installation
 
-Simply run:
+1. Clone the repository:
 
 ```bash
-python run.py
+git clone <repository-url>
+cd mcp-agent-poc
 ```
 
-This will:
-
-1. Check Python version (requires 3.9+)
-2. Create a virtual environment if needed
-3. Install all dependencies
-4. Start the MCP Agent
-
-### Option 2: Manual Setup
-
-1. Create and activate a virtual environment:
+2.Create and activate a virtual environment:
 
 ```bash
 python -m venv .venv
-source .venv/Scripts/activate  # On Windows
-source .venv/bin/activate      # On Unix/MacOS
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
-2.Install dependencies:
+3.Install the package in development mode:
 
 ```bash
 pip install -e .
 ```
 
-3.Start the demo agent:
-
-```bash
-python -m mcp.agents.demo_agent
-```
-
-## Available Tools
-
-The demo agent provides several powerful tools for data processing and analysis:
-
-### 1. Echo Tool
-
-Echoes back input data with timestamp.
-
-```bash
-curl -X POST http://localhost:8000/tools/echo \
-  -H "X-API-Key: demo-secret-key" \
-  -H "Content-Type: application/json" \
-  -d '{"message": "Hello, World!"}'
-```
-
-### 2. Calculate Tool
-
-Performs various mathematical operations.
-
-```bash
-curl -X POST http://localhost:8000/tools/calculate \
-  -H "X-API-Key: demo-secret-key" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "operation": "power",
-    "a": 2,
-    "b": 3
-  }'
-```
-
-Supported operations: add, subtract, multiply, divide, power, sqrt
-
-### 3. Analyze Text Tool
-
-Provides detailed text analysis and statistics.
-
-```bash
-curl -X POST http://localhost:8000/tools/analyze_text \
-  -H "X-API-Key: demo-secret-key" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "text": "This is a sample text. It has multiple sentences. And some paragraphs."
-  }'
-```
-
-Returns: character count, word count, unique words, sentence count, paragraph count, averages, and more.
-
-### 4. Format JSON Tool
-
-Formats and validates JSON data.
-
-```bash
-curl -X POST http://localhost:8000/tools/format_json \
-  -H "X-API-Key: demo-secret-key" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "json_string": "{\"name\":\"John\",\"age\":30}",
-    "indent": 2
-  }'
-```
-
-### 5. Extract Info Tool
-
-Extracts specific information from text using patterns.
-
-```bash
-curl -X POST http://localhost:8000/tools/extract_info \
-  -H "X-API-Key: demo-secret-key" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "text": "Contact us at john@example.com or call 123-456-7890",
-    "patterns": {
-      "email": "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b"
-    }
-  }'
-```
-
-Default patterns: email, phone, URL
-
-### 6. Validate Data Tool
-
-Validates data against custom rules.
-
-```bash
-curl -X POST http://localhost:8000/tools/validate_data \
-  -H "X-API-Key: demo-secret-key" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "data": {
-      "name": "John",
-      "age": 30
-    },
-    "rules": {
-      "name": {
-        "required": true,
-        "min_length": 2
-      },
-      "age": {
-        "type": "int",
-        "min_length": 1
-      }
-    }
-  }'
-```
-
-### 7. Transform Data Tool
-
-Transforms data using various operations.
-
-```bash
-curl -X POST http://localhost:8000/tools/transform_data \
-  -H "X-API-Key: demo-secret-key" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "data": {
-      "name": "john",
-      "age": "30"
-    },
-    "transformations": [
-      {
-        "operation": "convert",
-        "field": "age",
-        "type": "int"
-      },
-      {
-        "operation": "set",
-        "field": "status",
-        "value": "active"
-      }
-    ]
-  }'
-```
-
-Supported operations: set, delete, rename, convert
-
-## Response Format
-
-All tools return responses in a consistent format:
-
-```json
-{
-  "status": "success|error",
-  "data": { ... },
-  "error": "Error message if status is error"
-}
-```
-
 ## Configuration
 
-The agent can be configured using environment variables or a `.env` file:
+Create a `.env` file in the project root with the following settings:
 
 ```env
+# Demo Agent settings
 DEMO_AGENT_PORT=8000
-DEMO_AGENT_API_KEY=demo-secret-key
-LOG_LEVEL=INFO
+DEMO_AGENT_API_KEY=your_api_key_here
+
+# Outlook settings
+OUTLOOK_PATH="C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
 ```
 
-- 
+## Project Structure
+
+```text
+mcp-agent-poc/
+├── mcp/
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── config.py      # Configuration settings
+│   │   └── server.py      # FastAPI server implementation
+│   ├── tools/
+│   │   ├── __init__.py
+│   │   ├── email_tool.py      # Email sending functionality
+│   │   └── email_file_tool.py # Email file handling
+│   └── agents/
+│       ├── __init__.py
+│       └── demo_agent.py      # Demo agent implementation
+├── setup.py
+├── pyproject.toml
+├── run.py
+└── send_email.py
+```
+
+## Usage
+
+### Starting the MCP Agent
+
+```bash
+python run.py
+```
+
+This will start the MCP server on the configured port (default: 8000).
+
+### Sending an Email
+
+1. Create an email file (e.g., `sample_email.txt`) with the following format:
+
+```text
+TO: recipient@example.com
+CC: cc@example.com
+BCC: bcc@example.com
+SUBJECT: Your Subject Here
+BODY: Your email body text here.
+ATTACHMENTS:
+path/to/attachment1.pdf
+path/to/attachment2.docx
+```
+
+2.Send the email:
+
+```bash
+python send_email.py
+```
+
+## Components
+
+### Core Module (`mcp/core/`)
+
+#### Configuration (`config.py`)
+
+- Manages application settings using Pydantic
+- Loads configuration from environment variables and `.env` file
+- Defines settings for the demo agent and Outlook integration
+
+#### Server (`server.py`)
+
+- Implements a FastAPI-based MCP server
+- Provides endpoints for tool execution
+- Handles API key authentication
+- Includes health check endpoint
+
+### Tools Module (`mcp/tools/`)
+
+#### Email Tool (`email_tool.py`)
+
+- Manages Outlook integration
+- Automatically starts Outlook if not running
+- Handles email composition and sending
+- Supports attachments, CC, and BCC
+- Provides detailed logging and error handling
+
+#### Email File Tool (`email_file_tool.py`)
+
+- Parses email files
+- Extracts recipients, subject, body, and attachments
+- Validates email data before sending
+
+### Agents Module (`mcp/agents/`)
+
+#### Demo Agent (`demo_agent.py`)
+
+- Implements the main agent logic
+- Registers and manages tools
+- Handles tool execution requests
+- Provides error handling and logging
+
+## Error Handling
+
+The system includes comprehensive error handling for:
+
+- Outlook startup failures
+- Email composition errors
+- File access issues
+- API authentication failures
+- Invalid email data
+
+## Logging
+
+The system provides detailed logging for:
+
+- Outlook startup process
+- Email composition steps
+- Tool execution
+- Error conditions
+- API requests
