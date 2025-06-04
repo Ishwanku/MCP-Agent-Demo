@@ -226,29 +226,4 @@ DEMO_AGENT_API_KEY=demo-secret-key
 LOG_LEVEL=INFO
 ```
 
-## Error Handling
-
-The agent includes comprehensive error handling:
-
-- Invalid API keys return 401 Unauthorized
-- Invalid tool names return 404 Not Found
-- Tool execution errors return 500 Internal Server Error
-- All errors include descriptive messages
-
-## Security
-
-- API key authentication required for all endpoints
-- Input validation for all tools
-- Safe execution environment for transformations
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+- 
