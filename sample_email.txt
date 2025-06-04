@@ -1,7 +1,7 @@
 SUBJECT: Test Email from MCP Agent
 TO: ishwanku.saini@eversana.com
 CC: 
-BCC: vemula.saikumar@Eversana.com 
+BCC:
 ATTACHMENTS: 
 
 BODY:
