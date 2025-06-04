@@ -76,7 +76,7 @@ mcp-agent-poc/
 
 ## Project Flow Chart
 
-![Project Flow Diagram](./ProjectFlowChart.png)
+<img src="images/ProjectFlowChart.png" alt="Project Flow Diagram" width="800"/>
 
 ## Usage
 
