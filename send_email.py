@@ -23,7 +23,7 @@ def send_email_from_file(file_path: str) -> None:
     url = "http://127.0.0.1:8000/tools/send_email_from_file"
     headers = {
         "Content-Type": "application/json",
-        "X-API-Key": "demo-secret-key"
+        "API-KEY": "demo-secret-key"
     }
     data = {
         "data": {

@@ -91,7 +91,7 @@ class FastMCP:
         async def execute_tool(
             tool_name: str,
             request: ToolRequest,
-            x_api_key: Optional[str] = Header(None)
+            api_key: Optional[str] = Header(None, alias="API-Key")
         ):
             """Tool execution endpoint.
             
@@ -101,7 +101,7 @@ class FastMCP:
             Args:
                 tool_name: Name of the tool to execute
                 request: Tool execution request
-                x_api_key: Optional API key from header
+                api_key: Optional API key from header
                 
             Returns:
                 Tool execution result
@@ -110,7 +110,7 @@ class FastMCP:
                 HTTPException: If authentication fails or tool not found
             """
             # Check API key if configured
-            if self.api_key and x_api_key != self.api_key:
+            if self.api_key and api_key != self.api_key:
                 raise HTTPException(status_code=401, detail="Invalid API key")
             
             # Check if tool exists

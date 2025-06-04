@@ -1,16 +1,16 @@
-# # Python
- __pycache__/
- *.py[cod]
- *$py.class
- *.so
- .Python
- build/
- develop-eggs/
- dist/
- downloads/
- eggs/
- .eggs/
- lib/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
 lib64/
 parts/
 sdist/
@@ -19,6 +19,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # Virtual Environment
 .env
@@ -28,6 +29,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.python-version
 
 # IDE
 .idea/
@@ -35,6 +37,8 @@ venv.bak/
 *.swp
 *.swo
 .DS_Store
+*.sublime-workspace
+*.sublime-project
 
 # Testing
 .pytest_cache/
@@ -45,14 +49,36 @@ htmlcov/
 coverage.xml
 *.cover
 .hypothesis/
+.pytest_cache/
+nosetests.xml
+coverage/
 
 # Type checking
 .mypy_cache/
 .dmypy.json
 dmypy.json
+.pytype/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Database
+*.db
+*.sqlite3
+*.sqlite
+
+# Logs
+*.log
+logs/
+log/
 
 # Project specific
-*.log
 qdrant_db/
 tasks.json
 test_intent.log
@@ -63,14 +89,12 @@ dist/
 build/
 *.egg-info/
 
-# Jupyter Notebook
-.ipynb_checkpoints
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
 
-# Environment variables
-.env
-.env.*
-!.env.example
-
-# Database
-*.db
-*.sqlite3
+# System Files
+.DS_Store
+Thumbs.db

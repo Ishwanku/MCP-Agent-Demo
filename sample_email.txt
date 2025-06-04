@@ -2,7 +2,8 @@ SUBJECT: Test Email from MCP Agent
 TO: ishwanku.saini@eversana.com
 CC: 
 BCC:
-ATTACHMENTS: 
+ATTACHMENTS:
+C:\Users\Ishwanku.Saini\OneDrive - EVERSANA\Desktop\azure-samples-azure-search-openai-demo.txt
 
 BODY:
 Hello,
