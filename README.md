@@ -76,7 +76,7 @@ mcp-agent-poc/
 
 ## Project Flow Chart
 
-![Project Flow Diagram](ProjectFlowChart.png)
+![Project Flow Diagram](./ProjectFlowChart.png)
 
 ## Usage
 
